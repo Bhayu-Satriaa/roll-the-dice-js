@@ -16,7 +16,7 @@ body {
   font-weight: 400;
   height: 100vh;
   color: #333;
-  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  background-image: linear-gradient(to top left, #753682 0%, #4b2ebf 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,7 +50,7 @@ main {
   position: relative;
   font-size: 4rem;
   text-transform: uppercase;
-  letter-spacing: 10px;
+  letter-spacing: 1px;
   word-spacing: 2px;
   font-weight: 300;
   margin-bottom: 1rem;
@@ -63,22 +63,22 @@ main {
   margin-bottom: auto;
 }
 
-.player-active {
+.player--active {
   background-color: rgba(255, 255, 255, 0.4);
 }
-.player-active .name {
+.player--active .name {
   font-weight: 700;
 }
-.player-active .score {
+.player--active .score {
   font-weight: 400;
 }
 
-.player-active .current {
+.player--active .current {
   opacity: 1;
 }
 
 .current {
-  background-color: #c7365f;
+  background-color: #7536c7;
   opacity: 0.8;
   border-radius: 9px;
   color: #fff;
@@ -129,14 +129,17 @@ main {
   margin-right: 0.7rem;
 }
 
-.btn-baru {
+.btn--new {
   top: 4rem;
 }
-.btn-putar {
+.btn--roll {
   top: 39.3rem;
 }
-.btn-tahan {
+.btn--hold {
   top: 46.1rem;
+}
+.btn--turn-indicator {
+  top: 52.1rem;
 }
 
 .btn:active {
@@ -157,36 +160,120 @@ main {
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
 }
 
-.player-winner {
+.player--winner {
   background-color: #2f2f2f;
 }
 
-.player-winner .name {
+.player--winner .name {
   font-weight: 700;
   color: #c7365f;
 }
 
-.giliran-main {
-  position: absolute;
+.hidden {
+  display: none !important;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 10;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  top: 530px;
-  border: none;
-  color: #444;
-  font-size: 18px;
+  transform: translate(-50%, -50%);
+  background-image: linear-gradient(to top left, #4b2ebf  0%, #753682  100%);
+  border-radius: 1rem;
+  padding: 3rem 4rem;
   text-align: center;
-  padding: 10px;
-  width: 190px;
+  z-index: 20;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
+  min-width: 80rem;
+  min-height: 40rem;
+
+  /* tambahkan ini */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.winner-text {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.btn--close-modal {
+  padding: 1rem 3rem;
+  color: #4b2ebf;
+  position: static;      
+  transform: none;        
+  display: inline-block;
+  font-size: 1.5rem;
   text-transform: uppercase;
+  letter-spacing: normal;
+  background-color: #ffffff;
+}
 
-  background-color: white;
-  background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
+.btn--close-modal:hover {
+  background-color: #0b0b0b;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
+}
+
+.btn--close-modal:active {
+  transform: translateY(3px);   /* override active state .btn */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.btn--close-modal::first-letter {
+  font-size: inherit;      /* override ::first-letter dari .btn */
+  margin-right: 0;
+}
+
+.confirm-subtext {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 3rem;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.btn--confirm-yes,
+.btn--confirm-no {
+  padding: 1rem 3rem;
+  border: none;
   border-radius: 50rem;
-  box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+  font-size: 1.6rem;
+  font-family: inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.giliran-main:focus {
-  outline: none;
+.btn--confirm-yes {
+  background-color: #4b2ebf;
+  color: white;
 }
 
+.btn--confirm-yes:hover {
+  background-color: #0b0b0b;
+}
+
+.btn--confirm-no {
+  background-color: #eee;
+  color: #444;
+}
+
+.btn--confirm-no:hover {
+  background-color: #ddd;
+}
