@@ -60,7 +60,7 @@ const initializeGame = function () {
   isGameActive = true;
 
   diceImage.classList.add('hidden');
-  turnIndicator.value = "Giliran: Player 1";
+  turnIndicator.value = "Turn: Player 1";
 
   for (let i = 0; i < 2; i++) {
   scoreElement[i].textContent = 0;        // ← ini juga perlu!
